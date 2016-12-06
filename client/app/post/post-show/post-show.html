@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-9 no-padding">
+      <div>
+        <h3 ng-bind="$ctrl.post.headline"></h3>
+        <h6 ng-bind="$ctrl.post.createdAt | date: 'EEEE, MMMM d, yyyy'"></h6>
+        <i><h6 ng-bind="'Posted at ' + ($ctrl.post.createdAt | date: 'shortTime')"></h6></i>
+      </div>
+      <div class="col-xs-12">
+        <img src="{{ $ctrl.post.primaryImage }}" width="90%">
+        <br><br>
+        <p ng-bind="$ctrl.post.opening" class="col-xs-11 no-padding"></p>
+      </div>
+      <div class="col-xs-12 no-padding" ng-repeat="c in $ctrl.post.contents">
+        <div class="col-xs-12">
+          <h4 ng-bind="c.header"></h4>
+        </div>
+        <div class="col-xs-12">
+          <img src="{{ c.image }}" width="80%" ng-show="c.image">
+          <p ng-bind="c.content" class="col-xs-10 no-padding"></p>
+        </div>
+      </div>
+      <div class="col-xs-12 no-padding share-section">
+        <h5>Share This:</h5>
+        <a href="#" ng-click=""><i class="fa fa-facebook-square fa-2x"></i></a>
+        <a href="#" ng-click=""><i class="fa fa-twitter-square fa-2x"></i></a>
+        <a href="#" ng-click=""><i class="fa fa-google-plus-square fa-2x"></i></a>
+      </div>
+        <br>
+      <div ng-show="$ctrl.isLoggedIn()" class="edit-post">
+        <a ui-sref="edit-post-form({ id: $ctrl.post._id })"><i class="fa fa-edit"></i> Edit</a>
+      </div>
+    </div>
+    <div class="col-xs-3 no-padding">
+      <!-- Profile Section -->
+    </div>
+  </div>
+</div>
