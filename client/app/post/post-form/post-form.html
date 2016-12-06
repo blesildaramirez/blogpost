@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row margin-top-50">
+    <div class="panel panel-default col-xs-10 col-xs-offset-1 no-padding">
+      <div class="panel-heading">
+        <h3 class="panel-title" ng-bind="$ctrl.post._id ? 'Edit Post' : 'Add a Post'"></h3>
+      </div>
+      <div class="panel-body">
+        <form class="form" name="form" ng-submit="$ctrl.save(form)" novalidate>
+          <div class="form-group" ng-class="{ 'has-success': form.headline.$valid && $ctrl.submitted,
+                                            'has-error': form.headline.$invalid && $ctrl.submitted }">
+            <label>Title</label>
+            <input type="text" name="headline" class="form-control" ng-model="$ctrl.post.headline" required />
+
+            <p class="help-block" ng-show="form.headline.$error.required && $ctrl.submitted">
+              Title is required
+            </p>
+          </div>
+          <div class="form-group"  ng-class="{ 'has-success': form.opening.$valid && $ctrl.submitted,
+                                            'has-error': form.opening.$invalid && $ctrl.submitted }">
+            <label>Main Content</label>
+            <textarea name="opening" class="form-control" ng-model="$ctrl.post.opening" rows="5" required></textarea>
+            <p class="help-block" ng-show="form.opening.$error.required && $ctrl.submitted">
+              Main Content is required
+            </p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-success': form.primaryImage.$valid && $ctrl.submitted,
+                                            'has-error': form.primaryImage.$invalid && $ctrl.submitted }">
+            <label>Primary Image Link</label>
+            <input type="text" name="primaryImage" class="form-control" ng-model="$ctrl.post.primaryImage" required />
+
+            <p class="help-block" ng-show="form.primaryImage.$error.required && $ctrl.submitted">
+              Image Link is required
+            </p>
+          </div>
+          <div class="panel panel-default contents-panel">
+            <div class="panel-heading">
+              <h3 class="panel-title">Contents</h3>
+            </div>
+            <div class="panel-body">
+              <div ng-repeat="c in $ctrl.post.contents">
+                <div class="text-center">
+                  <span class="text-center">-- Content #{{ $index + 1 }} --</span>
+                  <button type="button" ng-click="$ctrl.removeContent($index)" class="close">&times;</button>
+                </div>
+                <hr/>
+                <div class="form-group">
+                  <label>Header</label>
+                  <input type="text" name="header{{$index}}" class="form-control" ng-model="$ctrl.post.contents[$index].header" />
+                </div>
+                <div class="form-group">
+                  <label>Image Link</label>
+                  <input type="text" name="image{{$index}}" class="form-control" ng-model="$ctrl.post.contents[$index].image" />
+                </div>
+                <div class="form-group" ng-class="{ 'has-success': form.content{{$index}}.$valid && $ctrl.submitted,
+                                            'has-error': form.content{{$index}}.$invalid && $ctrl.submitted }">
+                  <label>Content</label>
+                  <textarea name="content{{$index}}" class="form-control" ng-model="$ctrl.post.contents[$index].content" required rows="4"></textarea>
+                  <p class="help-block" ng-show="form.content{{$index}}.$error.required && $ctrl.submitted">
+                    Content is required
+                  </p>
+                </div>
+              </div>
+              <div>
+                <button class="btn btn-default" type="button" ng-click="$ctrl.addContent()">
+                Add Content
+                </button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-default" type="submit" ng-bind="$ctrl.post._id ? 'Save' : 'Post'">
+            </button>
+            <button class="btn btn-default" ng-show="$ctrl.post._id" type="button"
+              ui-sref="post-show({ title: $ctrl.post.headline.split(' ').join('-').toLowerCase() })">
+              Back
+            </button>
+            <button class="btn btn-danger pull-right" type="button" ng-if="$ctrl.post._id" ng-click="$ctrl.deletePost()">
+              Delete
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
