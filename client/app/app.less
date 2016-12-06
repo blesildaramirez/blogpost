@@ -16,7 +16,91 @@
   padding: 0.2em 0;
 }
 
+body {
+  font-family: 'Varela Round';
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.navbar-default {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.navbar-header {
+  margin-top: 50px;
+  border-bottom: 2px solid #000;
+}
+
+.navbar-header > img {
+  height: 100px;
+  vertical-align: top;
+}
+
+.navbar-default .navbar-brand {
+  float: none;
+  font-size: 100px;
+  line-height: inherit;
+  font-family: 'Cookie';
+  color: #000;
+}
+
+.navbar-default > .navigation-links {
+  border-bottom: 1px solid #000;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: #000;
+}
+
+.navbar-nav {
+  float: none;
+  display: inline-flex;
+}
+
+.navbar-nav.navbar-right > li > a,
+.navbar-nav.navbar-right > .user-profile {
+  padding: 15px;
+}
+
+.navbar-nav.navbar-right > .user-profile img {
+  height: 50px;
+}
+
+.navbar-default .navbar-nav li > a {
+  color: #777;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar-nav > li {
+  float: none;
+}
+
+.navbar-nav > li > a {
+  padding: 0px 25px;
+}
+
+.margin-top-50 {
+  margin-top: 50px;
+}
+
+a,
+a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+
 /* inject:less */
-@import 'admin/admin.less';
-@import 'main/main.less';
+@import 'admin/admin';
+@import 'main/main';
+@import 'post/post-form/post-form';
+@import 'post/post-list/post-list';
+@import 'post/post-show/post-show';
+@import '../components/footer/footer';
+@import '../components/modal/modal';
+@import '../components/oauth-buttons/oauth-buttons';
 /* endinject */
