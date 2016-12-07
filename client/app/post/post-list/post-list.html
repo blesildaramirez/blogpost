@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-9 no-padding">
+      <div ng-repeat="post in $ctrl.posts">
+        <div>
+          <h3><a ui-sref="post-show({ title: post.headline.split(' ').join('-').toLowerCase() })" ng-bind="post.headline"></a></h3>
+          <h6 ng-bind="post.createdAt | date: 'EEEE, MMMM d, yyyy'"></h6>
+        </div>
+        <div class="col-xs-12 post-container">
+          <img src="{{ post.primaryImage }}" width="90%">
+          <br><br>
+          <p ng-bind="post.opening" class="col-xs-11 no-padding"></p>
+          <div class="col-xs-12 no-padding">
+            <i><h5 ng-bind="'Posted at ' + (post.createdAt | date: 'shortTime')"></h5></i>
+            <h5>Share This:</h5>
+            <a href="#" ng-click=""><i class="fa fa-facebook-square fa-2x"></i></a>
+            <a href="#" ng-click=""><i class="fa fa-twitter-square fa-2x"></i></a>
+            <a href="#" ng-click=""><i class="fa fa-google-plus-square fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-11 text-center margin-top-50" ng-show="$ctrl.posts.length === 0 && !$ctrl.fetching.posts">
+        <span>Nothing found. <i class="fa fa-frown-o"></i></span>
+        <hr>
+      </div>
+      <div class="col-xs-11 text-center" ng-show="$ctrl.posts.length < $ctrl.total">
+        <a href="#" ng-click="$ctrl.loadMore()">Load More</a>
+        <hr>
+      </div>
+      <div class="col-xs-11 text-center">
+        <a ui-sref="main">HOME</a>
+      </div>
+    </div>
+    <div class="col-xs-3 no-padding">
+      <!-- Profile Section -->
+    </div>
+  </div>
+</div>

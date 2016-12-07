@@ -201,7 +201,7 @@ gulp.task('env:prod', () => {
  ********************/
 
 gulp.task('inject', cb => {
-    runSequence(['inject:js', 'inject:css', 'inject:less'], cb);
+    runSequence('inject:js', 'inject:css', 'inject:less', cb);
 });
 
 gulp.task('inject:js', () => {
