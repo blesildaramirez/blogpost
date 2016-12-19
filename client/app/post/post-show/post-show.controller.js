@@ -8,6 +8,7 @@ class PostShowComponent {
     this.$stateParams = $stateParams;
     this.isLoggedIn = Auth.isLoggedIn;
     this.api = '/api/posts/title';
+    this.user = {};
     this.post = {};
     this.fetching = {};
   }
@@ -19,6 +20,11 @@ class PostShowComponent {
         this.post = res.data;
       })
       .finally(() => this.fetching.post = false);
+
+    this.$http.get('/api/users/owner')
+      .then(res => {
+        this.user = res.data;
+      });
   }
 }
 
