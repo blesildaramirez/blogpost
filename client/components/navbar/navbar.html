@@ -43,15 +43,15 @@
         <li><a ui-sref="main">Contact</a></li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="nav.isLoggedIn()"><a ui-sref="login">Login</a></li>
-
-        <div class="user-profile clearfix" ng-show="nav.isLoggedIn()">
+      <ul class="nav navbar-nav navbar-right" ng-show="nav.isLoggedIn()">
+        <div class="user-profile clearfix">
           <div class="al-user-profile" uib-dropdown>
             <li><a uib-dropdown-toggle class="profile-toggle-link">Account</a></li>
             <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
               <li><i class="dropdown-arr"></i></li>
               <li ui-sref-active="active"><a ui-sref="post-form">Add</a></li>
+              <li ui-sref-active="active"><a ui-sref="profile">Profile</a></li>
+              <li ui-sref-active="active"><a ui-sref="settings">Password</a></li>
               <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
             </ul>
           </div>
