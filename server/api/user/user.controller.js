@@ -4,6 +4,7 @@ import User from './user.model';
 import passport from 'passport';
 import config from '../../config/environment';
 import jwt from 'jsonwebtoken';
+import _ from 'lodash';
 
 function validationError(res, statusCode) {
   statusCode = statusCode || 422;
@@ -62,6 +63,37 @@ export function show(req, res, next) {
       res.json(user.profile);
     })
     .catch(err => next(err));
+}
+
+/**
+ * Get owner
+ */
+export function getOwner(req, res, next) {
+  return User.findOne({ isOwner: true }, '-salt -password').exec()
+    .then(user => {
+      if (!user) {
+        return res.status(404).end();
+      }
+      res.json(user);
+    })
+    .catch(err => next(err));
+}
+
+/**
+ * Update  user info
+ */
+export function update(req, res, next) {
+  var userId = req.user._id;
+
+  return User.findById(userId).exec()
+    .then(user => {
+      var update = _.merge(user, req.body);
+      return update.save()
+        .then(() => {
+          res.status(204).end();
+        })
+        .catch(validationError(res));
+    });
 }
 
 /**

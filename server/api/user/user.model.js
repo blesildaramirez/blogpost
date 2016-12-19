@@ -34,6 +34,17 @@ var UserSchema = new Schema({
       }
     }
   },
+  links: {
+    facebook: String,
+    twitter: String,
+    google: String,
+    instagram: String
+  },
+  isOwner: {
+    type: Boolean,
+    default: false
+  },
+  about: String,
   provider: String,
   salt: String,
   facebook: {},
