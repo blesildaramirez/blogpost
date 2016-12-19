@@ -22,9 +22,26 @@
       </div>
       <div class="col-xs-12 no-padding share-section">
         <h5>Share This:</h5>
-        <a href="#" ng-click=""><i class="fa fa-facebook-square fa-2x"></i></a>
-        <a href="#" ng-click=""><i class="fa fa-twitter-square fa-2x"></i></a>
-        <a href="#" ng-click=""><i class="fa fa-google-plus-square fa-2x"></i></a>
+        <a href="#" socialshare
+          socialshare-provider="facebook"
+          socialshare-url="{{ $ctrl.link }}"
+          socialshare-text="{{ $ctrl.post.headline }}"
+          socialshare-title="{{ $ctrl.post.headline }}"
+          socialshare-description="{{ $ctrl.post.opening }}"
+          socialshare-media="{{ $ctrl.post.primaryImage }}" >
+          <i class="fa fa-facebook-square fa-2x"></i>
+        </a>
+        <a href="#" socialshare
+          socialshare-provider="twitter"
+          socialshare-url="{{ $ctrl.link }}"
+          socialshare-text="{{ $ctrl.post.headline }}" >
+          <i class="fa fa-twitter-square fa-2x"></i>
+        </a>
+        <a href="#" socialshare
+          socialshare-provider="google"
+          socialshare-url="{{ $ctrl.link }}">
+          <i class="fa fa-google-plus-square fa-2x"></i>
+        </a>
       </div>
         <br>
       <div ng-show="$ctrl.isLoggedIn()" class="edit-post">

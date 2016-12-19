@@ -3,8 +3,9 @@
 (function(){
 
 class PostShowComponent {
-  constructor($http, $stateParams, Auth) {
+  constructor($http, $location, $stateParams, Auth) {
     this.$http = $http;
+    this.link = $location.absUrl();
     this.$stateParams = $stateParams;
     this.isLoggedIn = Auth.isLoggedIn;
     this.api = '/api/posts/title';
