@@ -44,15 +44,17 @@ User.find({}).remove()
   .then(() => {
     User.create({
       provider: 'local',
-      name: 'Test User',
-      email: 'test@example.com',
-      password: 'test'
-    }, {
-      provider: 'local',
-      role: 'admin',
-      name: 'Admin',
-      email: 'admin@example.com',
-      password: 'admin'
+      name: 'Blesilda Ramirez',
+      email: 'blesildaramirez@gmail.com',
+      password: 'password',
+      links: {
+        facebook: 'blesildaramirez',
+        twitter: 'ble_ssie',
+        google: '107066785320924835617',
+        instagram: 'blessieramz'
+      },
+      isOwner: true,
+      about: 'Yas yass yasss yassss yasssss. Yassss yasss yasss Yass yas.'
     })
     .then(() => {
       console.log('finished populating users');
