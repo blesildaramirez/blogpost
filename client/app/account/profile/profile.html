@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row margin-top-50">
+    <div class="panel panel-default col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-3 no-padding">
+      <div class="panel-heading">
+        <h3 class="panel-title">Update Profile</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form" name="form" ng-submit="$ctrl.save(form)" novalidate>
+          <div class="form-group" ng-class="{ 'has-success': form.name.$valid && $ctrl.submitted,
+                                            'has-error': form.name.$invalid && $ctrl.submitted }">
+            <label>Name</label>
+            <input type="text" name="name" class="form-control" ng-model="$ctrl.user.name" required />
+
+            <p class="help-block" ng-show="form.name.$error.required && $ctrl.submitted">
+              Name is required
+            </p>
+          </div>
+          <div class="form-group"  ng-class="{ 'has-success': form.opening.$valid && $ctrl.submitted,
+                                            'has-error': form.opening.$invalid && $ctrl.submitted }">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" ng-model="$ctrl.user.email" required />
+            <p class="help-block" ng-show="form.opening.$error.required && $ctrl.submitted">
+              Email is required
+            </p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-success': form.facebook.$valid && $ctrl.submitted,
+                                            'has-error': form.facebook.$invalid && $ctrl.submitted }">
+            <label>Facebook</label>
+            <input type="text" name="facebook" class="form-control" ng-model="$ctrl.user.links.facebook" required />
+
+            <p class="help-block" ng-show="form.facebook.$error.required && $ctrl.submitted">
+              Facebook link is required
+            </p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-success': form.instagram.$valid && $ctrl.submitted,
+                                            'has-error': form.instagram.$invalid && $ctrl.submitted }">
+            <label>Instagram</label>
+            <input type="text" name="instagram" class="form-control" ng-model="$ctrl.user.links.instagram" required />
+
+            <p class="help-block" ng-show="form.instagram.$error.required && $ctrl.submitted">
+              Instagram link is required
+            </p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-success': form.twitter.$valid && $ctrl.submitted,
+                                            'has-error': form.twitter.$invalid && $ctrl.submitted }">
+            <label>Twitter</label>
+            <input type="text" name="twitter" class="form-control" ng-model="$ctrl.user.links.twitter" required />
+
+            <p class="help-block" ng-show="form.twitter.$error.required && $ctrl.submitted">
+              Twitter link is required
+            </p>
+          </div>
+          <div class="form-group" ng-class="{ 'has-success': form.name.$valid && $ctrl.submitted,
+                                            'has-error': form.name.$invalid && $ctrl.submitted }">
+            <label>Google Plus</label>
+            <input type="text" name="name" class="form-control" ng-model="$ctrl.user.links.google" required />
+
+            <p class="help-block" ng-show="form.name.$error.required && $ctrl.submitted">
+              Google Plus link is required
+            </p>
+          </div>
+          <div>
+            <button class="btn btn-default" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

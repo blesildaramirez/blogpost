@@ -6,6 +6,7 @@ class PostListComponent {
   constructor($http) {
     this.$http = $http;
     this.api = '/api/posts';
+    this.user = {};
     this.posts = [];
     this.fetching = {};
     this.total = 0;
@@ -24,6 +25,11 @@ class PostListComponent {
         this.total = res.data.count;
       })
       .finally(() => this.fetching.posts = false);
+
+    this.$http.get('/api/users/owner')
+      .then(res => {
+        this.user = res.data;
+      });
   }
 
   loadMore() {
