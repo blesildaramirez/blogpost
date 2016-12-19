@@ -3,8 +3,9 @@
 (function(){
 
 class PostListComponent {
-  constructor($http) {
+  constructor($http, $location) {
     this.$http = $http;
+    this.link = $location.protocol() + '://' + `${$location.host()}:${$location.port()}/posts/`;
     this.api = '/api/posts';
     this.user = {};
     this.posts = [];

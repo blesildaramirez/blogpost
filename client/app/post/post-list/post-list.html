@@ -13,9 +13,27 @@
           <div class="col-xs-12 no-padding">
             <i><h5 ng-bind="'Posted at ' + (post.createdAt | date: 'shortTime')"></h5></i>
             <h5>Share This:</h5>
-            <a href="#" ng-click=""><i class="fa fa-facebook-square fa-2x"></i></a>
-            <a href="#" ng-click=""><i class="fa fa-twitter-square fa-2x"></i></a>
-            <a href="#" ng-click=""><i class="fa fa-google-plus-square fa-2x"></i></a>
+            <a href="#" socialshare
+              socialshare-provider="facebook"
+              socialshare-url="{{ $ctrl.link }}{{ post.headline.split(' ').join('-').toLowerCase() }}"
+              socialshare-text="{{ post.headline }}"
+              socialshare-title="{{ post.headline }}"
+              socialshare-description="{{ post.opening }}"
+              socialshare-media="{{ post.primaryImage }}" >
+              <i class="fa fa-facebook-square fa-2x"></i>
+            </a>
+            <a href="#" socialshare
+              socialshare-provider="twitter"
+              socialshare-url="{{ $ctrl.link }}{{ post.headline.split(' ').join('-').toLowerCase() }}"
+              socialshare-text="{{ post.headline }}" >
+              <i class="fa fa-twitter-square fa-2x"></i>
+            </a>
+            <a href="#" socialshare
+              socialshare-provider="google"
+              socialshare-url="{{ $ctrl.link }}{{ post.headline.split(' ').join('-').toLowerCase() }}">
+              <i class="fa fa-google-plus-square fa-2x"></i>
+            </a>
+
           </div>
         </div>
       </div>
