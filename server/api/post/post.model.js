@@ -14,8 +14,9 @@ var PostSchema = new mongoose.Schema({
   }],
   comments: [{
     commentedBy: String,
-    createdAt: String,
-    updatedAt: String
+    comment: String,
+    createdAt: Date,
+    updatedAt: Date
   }]
 }, {
   timestamps: true
