@@ -121,6 +121,24 @@ export function update(req, res) {
     .catch(handleError(res));
 }
 
+// Updates an existing Post in the DB
+export function addComment(req, res) {
+  var comment = req.body;
+  comment.createdAt = new Date();
+  comment.updatedAt = new Date();
+  var update = {};
+  return Post.findById(req.params.id).exec()
+    .then(handleEntityNotFound(res))
+    .then((post) => {
+      update = post;
+      update.comments.push(comment);
+      return update;
+    })
+    .then(saveUpdates(update))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Deletes a Post from the DB
 export function destroy(req, res) {
   return Post.findById(req.params.id).exec()

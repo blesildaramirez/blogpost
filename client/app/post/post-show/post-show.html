@@ -43,9 +43,75 @@
           <i class="fa fa-google-plus-square fa-2x"></i>
         </a>
       </div>
-        <br>
+      <div class="col-xs-12 no-padding comment-box-section">
+        <h5>Post a comment:</h5>
+        <div class="panel panel-default col-xs-6 no-padding">
+          <div class="panel-body">
+            <form class="form" name="form" ng-submit="$ctrl.postComment(form)" novalidate>
+              <div class="form-group"  ng-class="{ 'has-success': form.comment.$valid && $ctrl.submitted,
+                                                'has-error': form.comment.$invalid && $ctrl.submitted }">
+                <textarea name="comment" class="form-control" ng-model="$ctrl.comment.comment" rows="3" required></textarea>
+                <p class="help-block" ng-show="form.comment.$error.required && $ctrl.submitted">
+                  Comment is required
+                </p>
+              </div>
+              <div class="form-group" ng-if="!$ctrl.isLoggedIn()">
+                <div class="checkbox">
+                  <input type="checkbox" ng-model="$ctrl.comment.anonymous"> Comment as anonymous
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-success': form.commentedBy.$valid && $ctrl.submitted,
+                                                'has-error': form.commentedBy.$invalid && $ctrl.submitted }"
+                  ng-if="!$ctrl.comment.anonymous && !$ctrl.isLoggedIn()">
+                <input type="text" name="commentedBy" class="form-control" ng-model="$ctrl.comment.commentedBy" required placeholder="Your Name"/>
+                <p class="help-block" ng-show="form.commentedBy.$error.required && $ctrl.submitted">
+                  Name is required
+                </p>
+              </div>
+              <div>
+                <button class="btn btn-default" type="submit">
+                  Post
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 no-padding comments-section">
+        <h5>Comments: ({{ $ctrl.post.comments.length }})</h5>
+        <div class="col-xs-12 no-padding" ng-repeat="c in $ctrl.post.comments">
+          <div class="">
+            <img class="user-image img-circle" src="assets/images/owner.jpg" ng-show="c.commentedBy === $ctrl.user._id">
+            <img class="user-image img-circle" src="assets/images/user.png" ng-show="c.commentedBy !== $ctrl.user._id">
+          </div>
+          <div class="comment-content col-xs-12">
+            <div>
+              <b ng-bind="c.commentedBy === $ctrl.user._id ? $ctrl.user.name : c.commentedBy"></b>
+              <div class="pull-right" ng-if="$ctrl.isLoggedIn()">
+                <i class="fa fa-edit text-info" ng-if="c.commentedBy === $ctrl.user._id" ng-click="c.edit = !c.edit"></i>
+                <i class="fa fa-trash text-danger" ng-click="c.edit = false; $ctrl.deleteComment($index)"></i>
+              </div>
+            </div>
+            <div>
+              <p ng-bind="c.comment" ng-show="!c.edit"></p>
+            </div>
+            <div class="" ng-if="$ctrl.isLoggedIn() && c.edit">
+              <div class="form-group">
+                <textarea name="comment" class="form-control" ng-init="c.newcomment = c.comment" ng-model="c.newcomment" rows="2"></textarea>
+              </div>
+              <div class="pull-right">
+                <button type="button" class="btn btn-xs btn-info" ng-click="$ctrl.editComment($index)">Save</button>
+              </div>
+            </div>
+            <div>
+              <span ng-bind="c.createdAt | date: 'MMM d, yyyy @ h:mma'"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
       <div ng-show="$ctrl.isLoggedIn()" class="edit-post">
-        <a ui-sref="edit-post-form({ id: $ctrl.post._id })"><i class="fa fa-edit"></i> Edit</a>
+        <a ui-sref="edit-post-form({ id: $ctrl.post._id })"><i class="fa fa-edit"></i> Edit Post</a>
       </div>
     </div>
     <div class="col-xs-3 no-padding">
